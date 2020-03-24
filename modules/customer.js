@@ -34,6 +34,14 @@ class CustomerModel {
             },
         })
     }
+     /**
+     * 查询数据表里所有顾客信息
+     * @param none
+     * @returns {Promise<Model>}
+     */
+    static async getAllCustomer() {
+        return await Customer.findAll()
+    }
 }
 
 module.exports = CustomerModel
