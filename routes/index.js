@@ -21,4 +21,6 @@ router.post('/addcustomer', CustomerController.create);
 router.get('/customer/:id', CustomerController.detail);
 // 获取全部顾客接口
 router.get('/getcustomerlist', CustomerController.allcustomer);
+// 删除某个顾客
+router.post('/deletecustomer', CustomerController.delete);
 module.exports = router

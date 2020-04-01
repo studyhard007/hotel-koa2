@@ -104,6 +104,40 @@ class customerController {
                 }
         }
     }
+
+        /**
+     * 删除获取顾客
+     * @param ctx
+     * @returns {Promise.<void>}
+     */
+     static async delete(ctx) {
+        let req = ctx.request.body;
+        if(req.id) {
+            try {
+                //删除某个顾客
+                let data = await CustomerModel.deleteCustomer(req.id);
+                ctx.response.status = 200;
+                ctx.body = {
+                    code: 200,
+                    msg: '删除成功',
+                    data
+                }
+            }catch (err) {
+                ctx.response.status = 412;
+                ctx.body = {
+                    code: 412,
+                    msg: '删除失败',
+                    data
+                }
+            }
+        }else {
+            ctx.response.status = 416;
+            ctx.body = {
+                code: 416,
+                msg: '顾客ID必须传'
+            }
+        }
+     }
 }
 
 module.exports = customerController

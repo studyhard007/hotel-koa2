@@ -30,7 +30,7 @@ class CustomerModel {
     static async getCustomerDetail(id) {
         return await Customer.findOne({
             where: {
-                id,
+                id: id,
             },
         })
     }
@@ -42,6 +42,20 @@ class CustomerModel {
     static async getAllCustomer() {
         return await Customer.findAll()
     }
+
+        /**
+     * 删除某个顾客
+     * @param id  顾客ID
+     * @returns {Promise<Model>}
+     */
+
+     static async deleteCustomer(id) {
+         return await Customer.destroy({
+             where:{
+                id,
+             },
+         })
+     }
 }
 
 module.exports = CustomerModel
