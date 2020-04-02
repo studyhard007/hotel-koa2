@@ -1,7 +1,7 @@
 const Router = require('koa-router')
 const ArticleController = require('../controllers/article')
 const CustomerController = require('../controllers/customer')
-
+const RoomController = require('../controllers/room');
 const router = new Router({
     prefix: '/api/v1'
 })
@@ -23,4 +23,9 @@ router.get('/customer/:id', CustomerController.detail);
 router.get('/getcustomerlist', CustomerController.allcustomer);
 // 删除某个顾客
 router.post('/deletecustomer', CustomerController.delete);
+/**
+ * 房间接口
+ */
+router.post('/createroom', RoomController.createroom);
+router.get('/roomdetail/:id', RoomController.roomdetail);
 module.exports = router

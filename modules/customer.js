@@ -30,7 +30,7 @@ class CustomerModel {
     static async getCustomerDetail(id) {
         return await Customer.findOne({
             where: {
-                id: id,
+                id,
             },
         })
     }
@@ -58,4 +58,4 @@ class CustomerModel {
      }
 }
 
-module.exports = CustomerModel
+module.exports = CustomerModel;

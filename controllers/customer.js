@@ -30,7 +30,7 @@ class customerController {
             } catch (err) {
                 ctx.response.status = 412;
                 ctx.body = {
-                    code: 200,
+                    code: 412,
                     msg: '创建顾客失败',
                     data: err
                 }
@@ -38,7 +38,7 @@ class customerController {
         } else {
             ctx.response.status = 416;
             ctx.body = {
-                code: 200,
+                code: 416,
                 msg: '参数不齐全',
             }
         }
@@ -69,7 +69,7 @@ class customerController {
                 ctx.body = {
                     code: 412,
                     msg: '查询失败',
-                    data
+                    data: err
                 }
             }
         } else {
