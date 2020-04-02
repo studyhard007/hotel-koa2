@@ -77,6 +77,31 @@ class roomController {
         }
     }
   }
+
+          /**
+     * 获取所有房间
+     * @param ctx
+     * @returns {Promise.<void>}
+     */
+    static async allroom(ctx) {
+      try{
+          // 获取数据库全部房间信息
+          let data = await RoomModel.getAllRoom();
+          ctx.response.status = 200;
+          ctx.body = {
+              code: 200,
+              msg: '查询成功',
+              data
+          }
+      }catch (err) {
+          ctx.response.status = 412;
+              ctx.body = {
+                  code: 412,
+                  msg: '查询失败',
+                  data
+              }
+      }
+  }
 }
 
 module.exports = roomController;

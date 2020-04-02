@@ -16,6 +16,7 @@ router.get('/article/:id', ArticleController.detail);
 /**
  * 顾客接口
  */
+// 添加顾客
 router.post('/addcustomer', CustomerController.create);
 // 获取顾客详情接口（路由）
 router.get('/customer/:id', CustomerController.detail);
@@ -26,6 +27,10 @@ router.post('/deletecustomer', CustomerController.delete);
 /**
  * 房间接口
  */
+// 录入房间信息
 router.post('/createroom', RoomController.createroom);
+// 查询某个房间
 router.get('/roomdetail/:id', RoomController.roomdetail);
+// 获取全部房间
+router.get('/getroomlist', RoomController.allroom)
 module.exports = router

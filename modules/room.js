@@ -37,6 +37,15 @@ class RoomModel {
           },
       })
   }
+
+        /**
+     * 获取所有客房
+     * @param none
+     * @returns {Promise<Model>}
+     */
+    static async getAllRoom() {
+      return await Room.findAll()
+    }
 }
 
 module.exports = RoomModel;
