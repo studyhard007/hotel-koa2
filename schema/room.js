@@ -64,7 +64,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     // 是否空闲
     isfree: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.STRING,
       allowNull: true,
       field: 'isfree'
     },

@@ -23,7 +23,7 @@ class RoomModel {
       customeridcard: data.customeridcard, //入住人身份证
       checkintime: data.checkintime, //入住时间
       checkouttime: data.checkouttime, //退房时间
-      isfree: (data.customername && data.customeridcard) ? false : true //房间状态是否为空
+      isfree: (data.customername && data.customeridcard) ? 'false' : 'true' //房间状态是否为空
     })
   }
 
@@ -71,17 +71,17 @@ class RoomModel {
      */
     static async findSome(ctx) {
       const op = [];
-      if(ctx.type) {
+      if(ctx.type !== 'undefined') {
         op.push({type: {
           [Op.eq]:ctx.type
         }})
       }
-      if(ctx.decoration) {
+      if(ctx.decoration !== 'undefined') {
         op.push({decoration: {
           [Op.eq]:ctx.decoration
         }})
       }
-      if(ctx.isfree) {
+      if(ctx.isfree !== 'undefined') {
         op.push({isfree: {
           [Op.eq]:ctx.isfree
         }})
