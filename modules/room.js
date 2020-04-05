@@ -1,7 +1,9 @@
 const db = require('../config/db');
 const Sequelize = db.sequelize;
+const SequelizeOp = require('sequelize');
 const Room = Sequelize.import('../schema/room');
-Room.sync({force: false})
+const Op = SequelizeOp.Op
+Room.sync({alter: true})
 
 class RoomModel {
   /**
@@ -20,7 +22,8 @@ class RoomModel {
       customername: data.customername, //入住人名字
       customeridcard: data.customeridcard, //入住人身份证
       checkintime: data.checkintime, //入住时间
-      checkouttime: data.checkouttime //退房时间
+      checkouttime: data.checkouttime, //退房时间
+      isfree: (data.customername && data.customeridcard) ? false : true //房间状态是否为空
     })
   }
 
@@ -60,6 +63,35 @@ class RoomModel {
           },
       })
   }
+
+      /**
+     * 根据条件查询客房
+     * @param ctx
+     * @returns {Promise<Modal>}
+     */
+    static async findSome(ctx) {
+      const op = [];
+      if(ctx.type) {
+        op.push({type: {
+          [Op.eq]:ctx.type
+        }})
+      }
+      if(ctx.decoration) {
+        op.push({decoration: {
+          [Op.eq]:ctx.decoration
+        }})
+      }
+      if(ctx.isfree) {
+        op.push({isfree: {
+          [Op.eq]:ctx.isfree
+        }})
+      }
+      return await Room.findAll({
+        where: {
+          [Op.and]: op
+        }
+      })
+    }
 }
 
 module.exports = RoomModel;

@@ -62,6 +62,12 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true,
       field: 'checkouttime'
     },
+    // 是否空闲
+    isfree: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      field: 'isfree'
+    },
     // 创建时间
     createdAt: {
       type: DataTypes.DATE,

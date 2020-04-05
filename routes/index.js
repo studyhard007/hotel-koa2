@@ -35,5 +35,6 @@ router.get('/roomdetail/:id', RoomController.roomdetail);
 router.get('/getroomlist', RoomController.allroom);
 // 删除某个房间
 router.post('/deleteroom', RoomController.deleteroom);
-
+// 按条件查询房间
+router.post('/searchroom', RoomController.findsome);
 module.exports = router

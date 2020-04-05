@@ -137,6 +137,41 @@ class roomController {
           }
       }
    }
+
+     /**
+   * 按条件查询房间
+   * @param ctx
+   * @return {Promise.<Modal>}
+   */
+   static async findsome(ctx) {
+     let req = ctx.request.body;
+     if(req.type || req.decoration || req.isfree) {
+       try {
+         let data = await RoomModel.findSome(req);
+         ctx.response.status = 200;
+         ctx.body = {
+           code: 200,
+           mas: '查询成功',
+           data
+         }
+       }catch (err) {
+         ctx.response.status = 412;
+         ctx.body = {
+           code: 412,
+           mas: '查询失败',
+           data: err
+         }
+       }
+     } else {
+       let data = await RoomModel.getAllRoom();
+       ctx.response = status = 200;
+       ctx.body = {
+         code: 200,
+         msg: '查询全部',
+         data
+       }
+     }
+   }
 }
 
 module.exports = roomController;
