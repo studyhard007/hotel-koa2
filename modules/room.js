@@ -1,5 +1,6 @@
 const db = require('../config/db');
 const Sequelize = db.sequelize;
+const moment = require('moment');
 const SequelizeOp = require('sequelize');
 const Room = Sequelize.import('../schema/room');
 const Op = SequelizeOp.Op
@@ -91,6 +92,24 @@ class RoomModel {
           [Op.and]: op
         }
       })
+    }
+
+      /**
+     * 编辑具体id的房间(办理入住、退房)
+     * @param ctx
+     * @returns {Promise<Modal>}
+     */
+    static async roomCheckIn(ctx) {
+      return await Room.update({
+        customername: ctx.customername,
+        customeridcard: ctx.customeridcard,
+        checkintime: 123456798,
+        checkouttime: ctx.checkouttime
+      }, {
+        where: {
+          id: ctx.id
+        }
+      });
     }
 }
 

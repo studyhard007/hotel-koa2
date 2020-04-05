@@ -18,17 +18,17 @@ class roomController {
           // 创建客房模型
           const ret = await RoomModel.createRoom(req);
           // 把刚刚创建的客房信息返回
-          // const data = await RoomModel.getRoomDetail(ret.id);
+          const data = await RoomModel.getRoomDetail(ret.id);
           ctx.response.status = 200;
           ctx.body = {
             code: 200,
             msg: '创建房间成功',
-            ret
+            data: data
           }
         }catch(err) {
           ctx.response.status = 412;
           ctx.body = {
-            code: 200,
+            code: 412,
             msg: '创建房间失败',
             data: err
           }
@@ -36,7 +36,7 @@ class roomController {
       } else {
         ctx.response.status = 416;
         ctx.body = {
-          code: 200,
+          code: 416,
           msg: '参数不齐全',
         }
       }
@@ -172,6 +172,41 @@ class roomController {
        }
      }
    }
+
+         /**
+     * 编辑具体id的房间(办理入住、退房)
+     * @param ctx
+     * @returns {Promise<Modal>}
+     */
+    static async roomcheckin(ctx) {
+      let req = ctx.request.body;
+      if(req.customername && req.customeridcard 
+         && req.checkouttime && req.id) {
+           try {
+             let ret = await RoomModel.roomCheckIn(req);
+            // const data = await RoomModel.getRoomDetail(ret.id);
+             ctx.response.status = 200;
+             ctx.body = {
+               code: 200,
+               msg: '编辑房间成功',
+               data: ret
+             }
+           }catch(err) {
+             ctx.response.status = 412;
+             ctx.body = {
+               code: 412,
+               msg: '编辑房间失败',
+               data: err
+             }
+           }
+         } else {
+           ctx.response.status = 416;
+           ctx.body = {
+             code: 416,
+             msg: '参数不齐全',
+           }
+         }
+    }
 }
 
 module.exports = roomController;

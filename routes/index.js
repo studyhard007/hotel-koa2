@@ -37,4 +37,6 @@ router.get('/getroomlist', RoomController.allroom);
 router.post('/deleteroom', RoomController.deleteroom);
 // 按条件查询房间
 router.post('/searchroom', RoomController.findsome);
+// 编辑房间
+router.post('/roomcheckin', RoomController.roomcheckin);
 module.exports = router
