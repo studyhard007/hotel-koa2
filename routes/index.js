@@ -32,5 +32,8 @@ router.post('/createroom', RoomController.createroom);
 // 查询某个房间
 router.get('/roomdetail/:id', RoomController.roomdetail);
 // 获取全部房间
-router.get('/getroomlist', RoomController.allroom)
+router.get('/getroomlist', RoomController.allroom);
+// 删除某个房间
+router.post('/deleteroom', RoomController.deleteroom);
+
 module.exports = router

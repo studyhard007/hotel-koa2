@@ -106,7 +106,7 @@ class customerController {
     }
 
         /**
-     * 删除获取顾客
+     * 删除顾客
      * @param ctx
      * @returns {Promise.<void>}
      */
@@ -127,7 +127,7 @@ class customerController {
                 ctx.body = {
                     code: 412,
                     msg: '删除失败',
-                    data
+                    data: err
                 }
             }
         }else {

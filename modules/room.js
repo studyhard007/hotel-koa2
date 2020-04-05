@@ -38,7 +38,7 @@ class RoomModel {
       })
   }
 
-        /**
+     /**
      * 获取所有客房
      * @param none
      * @returns {Promise<Model>}
@@ -46,6 +46,20 @@ class RoomModel {
     static async getAllRoom() {
       return await Room.findAll()
     }
+    
+    /**
+     * 删除某个房间
+     * @param id 房间id
+     * @returns {Promise<Modal>}
+     */
+    
+    static async deleteRoom(id) {
+      return await Room.destroy({
+          where:{
+             id,
+          },
+      })
+  }
 }
 
 module.exports = RoomModel;

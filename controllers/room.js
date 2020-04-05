@@ -102,6 +102,41 @@ class roomController {
               }
       }
   }
+
+     /**
+     * 删除房间
+     * @param ctx
+     * @returns {Promise<void>}
+     */
+
+    static async deleteroom(ctx) {
+      let req = ctx.request.body;
+      if(req.id) {
+          try {
+              //删除某个房间
+              let data = await RoomModel.deleteRoom(req.id);
+              ctx.response.status = 200;
+              ctx.body = {
+                  code: 200,
+                  msg: '删除成功',
+                  data
+              }
+          }catch (err) {
+              ctx.response.status = 412;
+              ctx.body = {
+                  code: 412,
+                  msg: '删除失败',
+                  data: err
+              }
+          }
+      }else {
+          ctx.response.status = 416;
+          ctx.body = {
+              code: 416,
+              msg: 'ID必须传'
+          }
+      }
+   }
 }
 
 module.exports = roomController;
