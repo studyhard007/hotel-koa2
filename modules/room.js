@@ -103,8 +103,9 @@ class RoomModel {
       return await Room.update({
         customername: ctx.customername,
         customeridcard: ctx.customeridcard,
-        checkintime: 123456798,
-        checkouttime: ctx.checkouttime
+        checkintime: moment().unix(),
+        checkouttime: ctx.checkouttime,
+        isfree: ctx.isfree
       }, {
         where: {
           id: ctx.id
