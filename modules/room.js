@@ -105,7 +105,8 @@ class RoomModel {
         customeridcard: ctx.customeridcard,
         checkintime: moment().unix(),
         checkouttime: ctx.checkouttime,
-        isfree: ctx.isfree
+        isfree: ctx.isfree,
+        deposit: ctx.deposit
       }, {
         where: {
           id: ctx.id

@@ -68,6 +68,12 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true,
       field: 'isfree'
     },
+    // 收取押金
+    deposit: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      field: 'deposit'
+    },
     // 创建时间
     createdAt: {
       type: DataTypes.DATE,
