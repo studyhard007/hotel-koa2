@@ -1,7 +1,8 @@
-const Router = require('koa-router')
-const ArticleController = require('../controllers/article')
-const CustomerController = require('../controllers/customer')
+const Router = require('koa-router');
+const ArticleController = require('../controllers/article');
+const CustomerController = require('../controllers/customer');
 const RoomController = require('../controllers/room');
+const CheckInController = require('../controllers/checkin');
 const router = new Router({
     prefix: '/api/v1'
 })
@@ -39,4 +40,8 @@ router.post('/deleteroom', RoomController.deleteroom);
 router.post('/searchroom', RoomController.findsome);
 // 编辑房间
 router.post('/roomcheckin', RoomController.roomcheckin);
+/**
+ * 入住信息登记接口
+ */
+router.post('/checkinrecord', CheckInController.createcheckin)
 module.exports = router
