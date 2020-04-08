@@ -67,6 +67,41 @@ class checkinController {
               }
       }
   }
+
+     /**
+   * 按条件查询入住记录
+   * @param ctx
+   * @return {Promise.<Modal>}
+   */
+  static async findsomerecord(ctx) {
+    let req = ctx.request.body;
+    if(req.customername || req.customeridcard || req.type || req.decoration) {
+      try {
+        let data = await CheckInModel.findSomeRecord(req);
+        ctx.response.status = 200;
+        ctx.body = {
+          code: 200,
+          mas: '查询成功',
+          data
+        }
+      }catch (err) {
+        ctx.response.status = 412;
+        ctx.body = {
+          code: 412,
+          mas: '查询失败',
+          data: err
+        }
+      }
+    } else {
+      let data = await CheckInModel.getAllCheckInRecord();
+      ctx.response = status = 200;
+      ctx.body = {
+        code: 200,
+        msg: '查询全部',
+        data
+      }
+    }
+  }
 }
 
 module.exports  =  checkinController;

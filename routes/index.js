@@ -47,4 +47,6 @@ router.post('/roomcheckin', RoomController.roomcheckin);
 router.post('/checkinrecord', CheckInController.createcheckin)
 // 获取所有入住记录
 router.get('/getallcheckinrecord', CheckInController.getallcheckinrecord);
+// 根据条件查询入住记录
+router.post('/searchcheckrecord', CheckInController.findsomerecord);
 module.exports = router

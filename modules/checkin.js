@@ -1,9 +1,9 @@
 const db = require('../config/db');
 const Sequelize = db.sequelize;
 // const moment = require('moment');
-// const SequelizeOp = require('sequelize');
+const SequelizeOp = require('sequelize');
 const Checkin = Sequelize.import('../schema/checkin');
-// const Op = SequelizeOp.Op
+const Op = SequelizeOp.Op
 Checkin.sync({alter: true})
 
 class CheckinModel {
@@ -35,6 +35,43 @@ class CheckinModel {
   static async getAllCheckInRecord () {
     return await Checkin.findAll()
   }
+    /**
+     * 根据条件查询入住记录
+     * @param ctx
+     * @returns {Promise<Modal>}
+     */
+    static async findSomeRecord(ctx) {
+      const op = [];
+      if(ctx.customername !== 'undefined'){
+        op.push({
+          type: {
+            [Op.eq]: ctx.customername
+          }
+        })
+      }
+      if(ctx.customeridcard !== 'undefined'){
+        op.push({
+          type: {
+            [Op.eq]: ctx.customeridcard
+          }
+        })
+      }
+      if(ctx.type !== 'undefined') {
+        op.push({type: {
+          [Op.eq]:ctx.type
+        }})
+      }
+      if(ctx.decoration !== 'undefined') {
+        op.push({decoration: {
+          [Op.eq]:ctx.decoration
+        }})
+      }
+      return await Checkin.findAll({
+        where: {
+          [Op.and]: op
+        }
+      })
+    }
 }
 
 module.exports = CheckinModel
