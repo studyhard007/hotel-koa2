@@ -181,7 +181,7 @@ class roomController {
     static async roomcheckin(ctx) {
       let req = ctx.request.body;
       if(req.customername && req.customeridcard 
-         && req.checkouttime && req.id && req.deposit) {
+         && req.checkouttime && req.id && req.deposit && req.roomrate) {
            try {
              let ret = await RoomModel.roomCheckIn(req);
             // const data = await RoomModel.getRoomDetail(ret.id);

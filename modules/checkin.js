@@ -26,6 +26,15 @@ class CheckinModel {
       ischeckout: data.ischeckout //是否已经退房
      })
    }
+
+    /**
+   * 获取所有入住信息
+   * @param none
+   * @return {Promise<Model>}
+   */
+  static async getAllCheckInRecord () {
+    return await Checkin.findAll()
+  }
 }
 
 module.exports = CheckinModel

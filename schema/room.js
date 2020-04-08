@@ -68,6 +68,12 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true,
       field: 'isfree'
     },
+    // 收取房费
+    roomrate: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      field: 'roomrate'
+    },
     // 收取押金
     deposit: {
       type: DataTypes.INTEGER,

@@ -43,5 +43,8 @@ router.post('/roomcheckin', RoomController.roomcheckin);
 /**
  * 入住信息登记接口
  */
+// 入住记录
 router.post('/checkinrecord', CheckInController.createcheckin)
+// 获取所有入住记录
+router.get('/getallcheckinrecord', CheckInController.getallcheckinrecord);
 module.exports = router

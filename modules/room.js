@@ -106,7 +106,8 @@ class RoomModel {
         checkintime: moment().unix(),
         checkouttime: ctx.checkouttime,
         isfree: ctx.isfree,
-        deposit: ctx.deposit
+        deposit: ctx.deposit,
+        roomrate: ctx.roomrate
       }, {
         where: {
           id: ctx.id

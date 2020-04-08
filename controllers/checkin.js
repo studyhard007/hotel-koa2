@@ -42,6 +42,31 @@ class checkinController {
         }
       }
   }
+
+      /**
+     * 获取所有入住记录
+     * @param ctx
+     * @returns {Promise.<void>}
+     */
+    static async getallcheckinrecord(ctx) {
+      try{
+          // 获取数据库全部入住信息记录
+          let data = await CheckInModel.getAllCheckInRecord();
+          ctx.response.status = 200;
+          ctx.body = {
+              code: 200,
+              msg: '查询成功',
+              data
+          }
+      }catch (err) {
+          ctx.response.status = 412;
+              ctx.body = {
+                  code: 412,
+                  msg: '查询失败',
+                  data
+              }
+      }
+  }
 }
 
 module.exports  =  checkinController;
