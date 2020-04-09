@@ -20,7 +20,7 @@ router.get('/article/:id', ArticleController.detail);
 // 添加顾客
 router.post('/addcustomer', CustomerController.create);
 // 获取顾客详情接口（路由）
-router.get('/customer/:id', CustomerController.detail);
+router.get('/customer/:phone', CustomerController.detail);
 // 获取全部顾客接口
 router.get('/getcustomerlist', CustomerController.allcustomer);
 // 删除某个顾客

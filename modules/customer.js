@@ -5,7 +5,7 @@ const Sequelize = db.sequelize;
 // 引入上一步的顾客数据表模型文件
 const Customer = Sequelize.import('../schema/customer');
 // 自动创建表
-Customer.sync({force: false});
+Customer.sync({alter: true});
 
 class CustomerModel {
     /**
@@ -15,27 +15,26 @@ class CustomerModel {
      */
     static async createCustomer(data) {
         return await Customer.create({
-            name: data.name, // 顾客姓名
-            gender: data.gender, // 顾客性别
-            age: data.age, // 顾客年龄
-            idcard: data.idcard, // 顾客身份证
+            phone: data.phone,
+            password: data.password,
+            issuper: false,
         })
     }
 
     /**
-     * 查询取顾客详情数据
-     * @param id  顾客ID
+     * 查询是否存在该管理员账号
+     * @param phone  管理员手机号
      * @returns {Promise<Model>}
      */
-    static async getCustomerDetail(id) {
+    static async getCustomerDetail(phone) {
         return await Customer.findOne({
             where: {
-                id,
+                phone,
             },
         })
     }
      /**
-     * 查询数据表里所有顾客信息
+     * 查询数据表里所有管理员信息
      * @param none
      * @returns {Promise<Model>}
      */
@@ -44,8 +43,8 @@ class CustomerModel {
     }
 
         /**
-     * 删除某个顾客
-     * @param id  顾客ID
+     * 删除某个管理员
+     * @param id  管理员ID
      * @returns {Promise<Model>}
      */
 

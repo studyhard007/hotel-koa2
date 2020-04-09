@@ -9,17 +9,14 @@ class customerController {
     static async create(ctx) {
         // 接收客服端
         let req = ctx.request.body;
-        if (req.name // 顾客姓名
-            && req.gender // 顾客性别
-            && req.age // 顾客年龄
-            && req.idcard // 顾客身份证
+        if (req.phone
+            && req.password
         ) {
             try {
                 // 创建顾客模型
                 const ret = await CustomerModel.createCustomer(req);
                 // 把刚刚新建的顾客ID查询顾客详情，且返回新创建的顾客信息
                 const data = await CustomerModel.getCustomerDetail(ret.id);
-
                 ctx.response.status = 200;
                 ctx.body = {
                     code: 200,
@@ -51,12 +48,12 @@ class customerController {
      * @returns {Promise.<void>}
      */
     static async detail(ctx) {
-        let id = ctx.params.id;
+        let phone = ctx.params.phone;
 
-        if (id) {
+        if (phone) {
             try {
                 // 查询顾客详情模型
-                let data = await CustomerModel.getCustomerDetail(id);
+                let data = await CustomerModel.getCustomerDetail(phone);
                 ctx.response.status = 200;
                 ctx.body = {
                     code: 200,

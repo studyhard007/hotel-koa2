@@ -8,29 +8,23 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: true,
             autoIncrement: true,
         },
-      // 顾客姓名
-        name: {
+      // 普通管理员手机号(账号)
+        phone: {
             type: DataTypes.STRING,
             allowNull: false,
             field: 'name',
         },
-        // 顾客性别
-        gender: {
+        // 普通管理员登录密码
+        password: {
             type: DataTypes.STRING,
             allowNull: false,
             field: 'gender'
         },
-        // 顾客年龄
-        age: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            field: 'age'
-        },
-        // 顾客身份证
-        idcard: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            field: 'idcard'
+        // 是否是超级管理员
+        issuper: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true,
+            field: 'issuper'
         },
         // 创建时间
         createdAt: {
