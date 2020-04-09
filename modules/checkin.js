@@ -72,6 +72,22 @@ class CheckinModel {
         }
       })
     }
+
+          /**
+     * 编辑具体id的房间(退房)
+     * @param ctx
+     * @returns {Promise<Modal>}
+     */
+
+     static async roomCheckOut(ctx) {
+      return await Checkin.update({
+        ischeckout: ctx.ischeckout,
+      }, {
+        where: {
+          customeridcard: ctx.customeridcard
+        }
+      });
+     }
 }
 
 module.exports = CheckinModel

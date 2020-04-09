@@ -43,8 +43,8 @@ router.post('/roomcheckin', RoomController.roomcheckin);
 /**
  * 入住信息登记接口
  */
-// 入住记录
-router.post('/checkinrecord', CheckInController.createcheckin)
+// 退房
+router.post('/checkinrecord', CheckInController.roomcheckout)
 // 获取所有入住记录
 router.get('/getallcheckinrecord', CheckInController.getallcheckinrecord);
 // 根据条件查询入住记录

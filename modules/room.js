@@ -95,7 +95,7 @@ class RoomModel {
     }
 
       /**
-     * 编辑具体id的房间(办理入住、退房)
+     * 编辑具体id的房间(办理入住,入住记录)
      * @param ctx
      * @returns {Promise<Modal>}
      */
@@ -108,6 +108,22 @@ class RoomModel {
         isfree: ctx.isfree,
         deposit: ctx.deposit,
         roomrate: ctx.roomrate
+      }, {
+        where: {
+          id: ctx.id
+        }
+      });
+    }
+
+          /**
+     * 编辑具体id的房间(退房)
+     * @param ctx
+     * @returns {Promise<Modal>}
+     */
+
+    static async roomCheckOut(ctx) {
+      return await Room.update({
+        isfree: ctx.isfree,
       }, {
         where: {
           id: ctx.id

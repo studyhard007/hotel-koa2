@@ -1,5 +1,5 @@
 const RoomModel = require('../modules/room');
-
+const CheckInModel = require('../modules/checkin');
 class roomController {
   /**
    * 创建房间
@@ -183,13 +183,16 @@ class roomController {
       if(req.customername && req.customeridcard 
          && req.checkouttime && req.id && req.deposit && req.roomrate) {
            try {
-             let ret = await RoomModel.roomCheckIn(req);
-            // const data = await RoomModel.getRoomDetail(ret.id);
+            let ret = await RoomModel.roomCheckIn(req);
+            const data = await RoomModel.getRoomDetail(req.id);
+            const res = await CheckInModel.createCheckIn(data);
              ctx.response.status = 200;
              ctx.body = {
                code: 200,
                msg: '编辑房间成功',
-               data: ret
+               data: data,
+               ret,
+               res
              }
            }catch(err) {
              ctx.response.status = 412;

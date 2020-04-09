@@ -1,5 +1,5 @@
 const CheckInModel = require('../modules/checkin');
-
+const RoomModel = require('../modules/room');
 class checkinController {
   /**
    * 创建入住信息记录
@@ -102,6 +102,41 @@ class checkinController {
       }
     }
   }
+
+           /**
+     * 编辑具体id的房间(退房)
+     * @param ctx
+     * @returns {Promise<Modal>}
+     */
+    static async roomcheckout(ctx) {
+      let req = ctx.request.body;
+      if(req.ischeckout && req.isfree && req.id) {
+        try {
+          let ret = await CheckInModel.roomCheckOut(req);
+          let res = await RoomModel.roomCheckOut(req);
+          ctx.response.status = 200;
+          ctx.body = {
+            code: 200,
+            msg: '退房成功',
+            ret,
+            res
+          }
+        }catch(err) {
+          ctx.response.status = 412;
+          ctx.body = {
+            code: 412,
+            msg: '退房失败',
+            data: err
+          }
+        }
+      } else {
+        ctx.response.status = 416;
+        ctx.body = {
+          code: 416,
+          msg: '参数不齐全',
+        }
+      }
+    }
 }
 
 module.exports  =  checkinController;
