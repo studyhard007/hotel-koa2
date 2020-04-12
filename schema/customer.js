@@ -12,13 +12,13 @@ module.exports = function (sequelize, DataTypes) {
         phone: {
             type: DataTypes.STRING,
             allowNull: false,
-            field: 'name',
+            field: 'phone',
         },
         // 普通管理员登录密码
         password: {
             type: DataTypes.STRING,
             allowNull: false,
-            field: 'gender'
+            field: 'password'
         },
         // 是否是超级管理员
         issuper: {

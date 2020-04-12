@@ -101,13 +101,13 @@ class RoomModel {
      */
     static async roomCheckIn(ctx) {
       return await Room.update({
-        customername: ctx.customername,
-        customeridcard: ctx.customeridcard,
-        checkintime: moment().unix(),
-        checkouttime: ctx.checkouttime,
-        isfree: ctx.isfree,
-        deposit: ctx.deposit,
-        roomrate: ctx.roomrate
+        customername: ctx.customername, //入住人姓名
+        customeridcard: ctx.customeridcard, //入住人身份证
+        checkintime: moment().unix(),//入住时间
+        checkouttime: ctx.checkouttime, //退房时间
+        isfree: ctx.isfree, //房间状态
+        deposit: ctx.deposit, //押金
+        roomrate: ctx.roomrate //房费
       }, {
         where: {
           id: ctx.id

@@ -9,7 +9,7 @@ Customer.sync({alter: true});
 
 class CustomerModel {
     /**
-     * 创建顾客模型
+     * 创建普通管理员模型
      * @param data
      * @returns {Promise<*>}
      */
