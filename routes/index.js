@@ -14,6 +14,8 @@ const router = new Router({
 router.post('/article', ArticleController.create);
 // 获取文章详情接口（路由）
 router.get('/article/:id', ArticleController.detail);
+// 获取对应账单记录
+router.post('/findsomebillinquiry', ArticleController.findsomebillinquiry);
 /**
  * 顾客接口
  */
