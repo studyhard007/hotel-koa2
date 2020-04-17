@@ -54,6 +54,15 @@ class ArticleModel {
       },
     });
   }
+
+  /**
+   * 获取账单列表
+   * @param ctx
+   * @returns {Promise<Model>}
+   */
+  static async getBillInquirylist() {
+    return Article.findAll();
+  }
 }
 
 module.exports = ArticleModel;

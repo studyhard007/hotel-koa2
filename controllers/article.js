@@ -10,8 +10,8 @@ class articleController {
     // 接收客服端
     let req = ctx.request.body;
     if (
-      req.type && // 文章标题
-      req.price && // 文章作者
+      req.type && // 房间类型
+      req.price && // 房间价格
       req.checkouttime && // 入账时间
       req.decoration //装潢类型
     ) {
@@ -84,34 +84,59 @@ class articleController {
    * @returns {Promise<Model>}
    */
 
-   static async findsomebillinquiry(ctx) {
-      let req = ctx.request.body
-      if (req.start_at && req.end_at) {
-        try {
-          // 查询文章详情模型
-          let data = await ArticleModel.findSomeBillInquiry(req);
-          ctx.response.status = 200;
-          ctx.body = {
-            code: 200,
-            msg: "查询成功",
-            data,
-          };
-        } catch (err) {
-          ctx.response.status = 412;
-          ctx.body = {
-            code: 412,
-            msg: "查询失败",
-            data: err,
-          };
-        }
-      } else {
-        ctx.response.status = 416;
+  static async findsomebillinquiry(ctx) {
+    let req = ctx.request.body;
+    if (req.start_at && req.end_at) {
+      try {
+        // 查询账单详情模型
+        let data = await ArticleModel.findSomeBillInquiry(req);
+        ctx.response.status = 200;
         ctx.body = {
-          code: 416,
-          msg: "文章ID必须传",
+          code: 200,
+          msg: "查询成功",
+          data,
         };
-      } 
-   }
+      } catch (err) {
+        ctx.response.status = 412;
+        ctx.body = {
+          code: 412,
+          msg: "查询失败",
+          data: err,
+        };
+      }
+    } else {
+      ctx.response.status = 416;
+      ctx.body = {
+        code: 416,
+        msg: "文章ID必须传",
+      };
+    }
+  }
+
+  /**
+   * 获取所有账单信息
+   * @param ctx
+   * @returns {Promise.<void>}
+   */
+  static async getbillinquirylist(ctx) {
+    try {
+      // 获取数据库全部房间信息
+      let data = await ArticleModel.getBillInquirylist();
+      ctx.response.status = 200;
+      ctx.body = {
+        code: 200,
+        msg: "查询成功",
+        data,
+      };
+    } catch (err) {
+      ctx.response.status = 412;
+      ctx.body = {
+        code: 412,
+        msg: "查询失败",
+        data: err,
+      };
+    }
+  }
 }
 
 module.exports = articleController;
