@@ -19,7 +19,7 @@ router.post("/findsomebillinquiry", ArticleController.findsomebillinquiry);
 // 获取账单列表
 router.get("/getbillinquirylist", ArticleController.getbillinquirylist);
 // 获得业绩统计
-router.get("/getperformance", ArticleController.getperformance);
+router.post("/getperformance", ArticleController.getperformance);
 
 /**
  * 顾客接口

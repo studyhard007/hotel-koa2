@@ -70,10 +70,13 @@ class ArticleModel {
    * @param ctx
    * @returns {Promise<Model>}
    */
-  static async getPerformance() {
+  static async getPerformance(ctx) {
     return Article.findAll({
       attributes: ["billinquiryin", [Sequelize.fn("SUM", Sequelize.col("price")), "price"]],
       group: "billinquiryin",
+      where:{billinquiryin: {
+        [Op.between]: [ctx.start_at, ctx.end_at]
+      }},
       raw: true,
     });
   }
