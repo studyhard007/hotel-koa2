@@ -34,6 +34,12 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: true,
         field: "checkouttime",
       },
+      // 入账日期(当天)/根据这个来做业绩统计
+      billinquiryin: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        field: "billinquiryin",
+      },
       // 创建时间
       createdAt: {
         type: DataTypes.DATE,

@@ -21,6 +21,7 @@ class ArticleModel {
       price: data.price, // 价格
       checkouttime: data.checkouttime, // 入账时间
       decoration: data.decoration, // 装潢类型
+      billinquiryin: data.billinquiryin, //入账日期
     });
   }
 
@@ -62,6 +63,19 @@ class ArticleModel {
    */
   static async getBillInquirylist() {
     return Article.findAll();
+  }
+
+  /**
+   * 获取账单业绩统计
+   * @param ctx
+   * @returns {Promise<Model>}
+   */
+  static async getPerformance() {
+    return Article.findAll({
+      attributes: ["billinquiryin", [Sequelize.fn("SUM", Sequelize.col("price")), "price"]],
+      group: "billinquiryin",
+      raw: true,
+    });
   }
 }
 

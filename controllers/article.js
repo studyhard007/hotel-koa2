@@ -13,7 +13,8 @@ class articleController {
       req.type && // 房间类型
       req.price && // 房间价格
       req.checkouttime && // 入账时间
-      req.decoration //装潢类型
+      req.decoration && //装潢类型
+      req.billinquiryin //入账日期
     ) {
       try {
         // 创建文章模型
@@ -122,6 +123,31 @@ class articleController {
     try {
       // 获取数据库全部房间信息
       let data = await ArticleModel.getBillInquirylist();
+      ctx.response.status = 200;
+      ctx.body = {
+        code: 200,
+        msg: "查询成功",
+        data,
+      };
+    } catch (err) {
+      ctx.response.status = 412;
+      ctx.body = {
+        code: 412,
+        msg: "查询失败",
+        data: err,
+      };
+    }
+  }
+
+    /**
+   * 获取业绩统计
+   * @param ctx
+   * @returns {Promise.<void>}
+   */
+  static async getperformance(ctx) {
+    try {
+      // 获取数据库全部房间信息
+      let data = await ArticleModel.getPerformance();
       ctx.response.status = 200;
       ctx.body = {
         code: 200,
