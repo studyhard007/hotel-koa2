@@ -47,8 +47,6 @@ class ArticleModel {
   static async findSomeBillInquiry(ctx) {
     return await Article.findAll({
       where: {
-        //    [Op.and]: [{checkouttime: {[Op.gte]: ctx.searchtime[0]}}, {checkouttime: {[Op.lte]: ctx.searchtime[1]}}]
-        // checkouttime: ctx.searchtime,
         checkouttime: {
           [Op.between]: [ctx.start_at, ctx.end_at],
         },
