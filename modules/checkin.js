@@ -44,14 +44,14 @@ class CheckinModel {
       const op = [];
       if(ctx.customername !== 'undefined'){
         op.push({
-          type: {
+          customername: {
             [Op.eq]: ctx.customername
           }
         })
       }
       if(ctx.customeridcard !== 'undefined'){
         op.push({
-          type: {
+          customeridcard: {
             [Op.eq]: ctx.customeridcard
           }
         })
