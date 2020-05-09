@@ -145,7 +145,7 @@ class roomController {
    */
    static async findsome(ctx) {
      let req = ctx.request.body;
-     if(req.type || req.decoration || req.isfree) {
+     if(req.type || req.decoration || req.isfree || req.number) {
        try {
          let data = await RoomModel.findSome(req);
          ctx.response.status = 200;

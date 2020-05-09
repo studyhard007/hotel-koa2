@@ -87,6 +87,11 @@ class RoomModel {
           [Op.eq]:ctx.isfree
         }})
       }
+      if(ctx.number !== 'undefined') {
+        op.push({number: {
+          [Op.eq]:ctx.number
+        }})
+      }
       return await Room.findAll({
         where: {
           [Op.and]: op
